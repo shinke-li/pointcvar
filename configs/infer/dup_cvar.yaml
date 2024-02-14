@@ -1,0 +1,11 @@
+ROBUSTINFER:
+  ACTIVATE: True 
+  METHOD: dup_cvar
+  PARAMS:
+    DUP_CVAR:
+      model_path: "defense/DUP_Net/pu-in_1024-up_4.pth"
+      drop_rate: 0.08 
+      use_true: False 
+      drop_strategy: "drop"
+      step: 5
+      iter_num: 1

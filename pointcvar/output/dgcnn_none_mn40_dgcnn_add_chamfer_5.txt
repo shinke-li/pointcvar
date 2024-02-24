@@ -1,0 +1,2 @@
+Model: dgcnn Corruption: mn40_dgcnn_add_chamfer Severity: 5 Acc: 0.839546191247974 Class Acc: 0.8013720930232558
+Model: dgcnn Corruption: mn40_dgcnn_add_chamfer Severity: 5 Acc: 0.8460291734197731 Class Acc: 0.8041569767441861

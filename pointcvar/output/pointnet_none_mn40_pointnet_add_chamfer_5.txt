@@ -1,0 +1,3 @@
+Model: pointnet Corruption: mn40_pointnet_add_chamfer Severity: 5 Acc: 0.8241491085899514 Class Acc: 0.7621744186046511
+Model: pointnet Corruption: mn40_pointnet_add_chamfer Severity: 5 Acc: 0.023500810372771474 Class Acc: 0.018122093023255813
+Model: pointnet Corruption: mn40_pointnet_add_chamfer Severity: 5 Acc: 0.8849270664505673 Class Acc: 0.8372267441860466

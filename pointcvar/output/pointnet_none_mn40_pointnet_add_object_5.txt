@@ -1,0 +1,1 @@
+Model: pointnet Corruption: mn40_pointnet_add_object Severity: 5 Acc: 0.49756888168557534 Class Acc: 0.45381395348837206

@@ -24,7 +24,7 @@
   <a href="https://arxiv.org/abs/2307.10875" style="text-decoration: none;">
     <img src="https://img.shields.io/badge/2311.12085-b31b1b?logo=arXiv&label=arXiv">
   </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="http://xinke.li" style="text-decoration: none;">
+  <a href="https://sites.google.com/view/pointcvar" style="text-decoration: none;">
     <img src="https://img.shields.io/badge/Project%20Page-blue?logo=Google%20Chrome&logoColor=white">
   </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="https://www.youtube.com" style="text-decoration: none;">

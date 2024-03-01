@@ -1,8 +1,0 @@
-ROBUSTINFER:
-  ACTIVATE: True 
-  METHOD: dup
-  PARAMS:
-    DUP:
-      model_path: "defense/DUP_Net/pu-in_1024-up_4.pth"
-DATALOADER:
-  batch_size: 12

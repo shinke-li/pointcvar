@@ -1,8 +1,0 @@
-data/
-log/
-*.pyc
-.DS_Store
-pytorch/pretrained/
-pytorch/checkpoints/
-tensorflow/part_seg/train_results/
-

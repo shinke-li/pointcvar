@@ -1,0 +1,13 @@
+ROBUSTINFER:
+  ACTIVATE: True 
+  METHOD: cvar
+  PARAMS:
+    CVAR:
+      drop_rate: 0.08
+      use_true: False 
+      drop_strategy: "drop"
+      step: 5
+      iter_num: 1
+DATALOADER:
+  batch_size: 8
+  num_workers: 0

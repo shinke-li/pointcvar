@@ -92,7 +92,7 @@ _C.DATALOADER.SHAPENET_PART.num_points      = 1024
 # MODELNET40_C
 #-----------------------------------------------------------------------------
 _C.DATALOADER.MODELNET40_C = CN()
-_C.DATALOADER.MODELNET40_C.test_data_path  = './data/modelnet40_c/'
+_C.DATALOADER.MODELNET40_C.test_data_path  = './data/corruption/'
 _C.DATALOADER.MODELNET40_C.corruption      = 'uniform'
 _C.DATALOADER.MODELNET40_C.severity        = 1
 # ----------------------------------------------------------------------------

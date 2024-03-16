@@ -16,6 +16,7 @@ from scipy.spatial.distance import cdist
 # Additional information that might be necessary to get the model
 DATASET_NUM_CLASS = {
     'modelnet40_c': 40,
+    'shapenet_c': 16,
     'modelnet40_dgcnn': 40,
     'shapenetpart_dgcnn': 16
 }

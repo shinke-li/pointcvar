@@ -417,7 +417,6 @@ def load_best_checkpoint(model, cfg):
 def load_model_opt_sched(model, optimizer, lr_sched, bnm_sched, model_path):
     print(f'Recovering model and checkpoint from {model_path}')
     checkpoint = torch.load(model_path)
-    checkpoint['model_state'] = OrderedDict([(k.replace('model.','module.model.'), v) for k, v in checkpoint['model_state'].items()])
     try:
         model.load_state_dict(checkpoint['model_state'])
     except:
@@ -425,6 +424,7 @@ def load_model_opt_sched(model, optimizer, lr_sched, bnm_sched, model_path):
             model.module.load_state_dict(checkpoint['model_state'])
         else:
             model = nn.DataParallel(model)
+            checkpoint['model_state'] = OrderedDict([(k.replace('model.','module.model.'), v) for k, v in checkpoint['model_state'].items()])
             model.load_state_dict(checkpoint['model_state'])
             model = model.module
 
@@ -660,7 +660,6 @@ def pn2_vote_evaluation(cfg, model_path, log_file):
     print(f"Checkpoint loaded from {model_path}")
     model.to(DEVICE)
     model.eval()
-
     pn2_vote_evaluate_cls(loader_test, model, log_file)
 
 
@@ -672,11 +671,11 @@ if __name__ == '__main__':
     parser.add_argument('--extra-config', type=str, default="")
     parser.add_argument('--model-path', type=str, default="")
     parser.add_argument('--resume', action="store_true", default=False)
-    parser.add_argument('--corruption',type=str,default='uniform',
+    parser.add_argument('--corruption',type=str, default='uniform',
                         help="Which corruption to use")
     parser.add_argument('--output',type=str,default='./test.txt',
                         help="path to output file")
-    parser.add_argument('--severity',type=int,default=1,
+    parser.add_argument('--severity',type=int, default=1,
                         help="Which severity to use")
     parser.add_argument('--confusion', action="store_true", default=False,
                         help="whether to output confusion matrix data")
@@ -715,7 +714,6 @@ if __name__ == '__main__':
         entry_train(cfg, cmd_args.resume, cmd_args.model_path)
 
     elif cmd_args.entry in ["test", "valid"]:
-        file_object = open(cmd_args.output, 'a')
         assert not cmd_args.exp_config == ""
         assert not cmd_args.model_path == ""
         cfg = get_cfg_defaults()
@@ -725,18 +723,21 @@ if __name__ == '__main__':
             print(cmd_args.extra_config, 'is the new file.')
             cfg.merge_from_file(cmd_args.extra_config)
 
-        if cfg.EXP.DATASET == "modelnet40_c":
+        if cfg.EXP.DATASET == "modelnet40_c" or cfg.EXP.DATASET == 'shapenet_c':
             cfg.DATALOADER.MODELNET40_C.corruption = cmd_args.corruption
             cfg.DATALOADER.MODELNET40_C.severity = cmd_args.severity
         cfg.freeze()
-        print(cfg)
         random.seed(cfg.EXP.SEED)
         np.random.seed(cfg.EXP.SEED)
         torch.manual_seed(cfg.EXP.SEED)
-
         test_or_valid = cmd_args.entry == "test"
-        
-        entry_test(cfg, test_or_valid, cmd_args.model_path,cmd_args.confusion)
+        DATA_PATH = os.path.join(cfg.DATALOADER.MODELNET40_C.test_data_path, 'data_' + cfg.DATALOADER.MODELNET40_C.corruption + '_' +str(cfg.DATALOADER.MODELNET40_C.severity) + '.npy')
+        if os.path.exists(DATA_PATH):
+            print(cfg)
+            file_object = open(cmd_args.output, 'a')
+            entry_test(cfg, test_or_valid, cmd_args.model_path,cmd_args.confusion)
+        else:
+            print('This corruption does not exit!')
 
     elif cmd_args.entry in ["rscnn_vote", "pn2_vote"]:
         assert not cmd_args.exp_config == ""

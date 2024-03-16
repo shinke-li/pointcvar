@@ -44,7 +44,6 @@ class ShapeNetPart(ModelNet40Dgcnn):
 
 
 def load_data(data_path,corruption,severity, target=False):
-
     DATA_DIR = os.path.join(data_path, 'data_' + corruption + '_' +str(severity) + '.npy')
     if (corruption in ['uniform', 'gaussian', 'background','impulse','upsampling','distortion_rbf','distortion_rbf_inv','density', 'density_inc','shear','rotation','cutout','distortion' ,'occlusion','lidar']):
         LABEL_DIR = os.path.join(data_path, 'label.npy') 
@@ -71,7 +70,6 @@ class ModelNet40C(Dataset):
         }[self.split]
         self.corruption = corruption
         self.severity = severity
-
         self.data, self.label = load_data(self.data_path, self.corruption, self.severity, target)
         self.partition =  'test'
 
@@ -98,6 +96,9 @@ def create_dataloader(split, cfg):
         dataset_args.update(dict(**cfg.DATALOADER.SHAPENET_PART))
         dataset = ShapeNetPart(**dataset_args)
     elif cfg.EXP.DATASET == "modelnet40_c":
+        dataset_args.update(dict(**cfg.DATALOADER.MODELNET40_C))
+        dataset = ModelNet40C(**dataset_args)
+    elif cfg.EXP.DATASET == "shapenet_c":
         dataset_args.update(dict(**cfg.DATALOADER.MODELNET40_C))
         dataset = ModelNet40C(**dataset_args)
     else:

@@ -1,1 +1,0 @@
-Model: pointnet Corruption: mn40_pointnet_add_hausdorff Severity: 5 Acc: 0.8638573743922204 Class Acc: 0.8213372093023257

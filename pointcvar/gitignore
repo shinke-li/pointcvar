@@ -9,6 +9,7 @@ __pycache__/
 
 #output
 output/
+/pointvar/output/
 
 # Distribution / packaging
 .Python

@@ -40,23 +40,25 @@
 
 ## Getting Started
 
-All implementation code has been tested on Ubuntu 18.04 with Python version 3.7.5, CUDA version 11.0 and GCC version 9.4.
+All implementation code has been tested on Ubuntu 22.04 with Python version 3.9, CUDA version 11.6 and GCC version 9.4.
 
 ### Environment
 
-We recommend installing [Conda](https://conda.io/projects/conda/en/latest/user-guide/install/) and creating a conda environment for running by:
+We recommend installing [Conda](https://conda.io/projects/conda/en/latest/user-guide/install/) or [Miniforge](https://github.com/conda-forge/miniforge) creating a conda environment for running by:
 
 ```
-conda create --name pointCVaR python=3.7.5
+conda create --name pointCVaR python=3.9
 ```
 
 Activate the virtual environment and install the required libraries:
 
 ```
 conda activate pointCVaR
+conda install pytorch==1.13.1 torchvision==0.14.1 pytorch-cuda=11.6 -c pytorch -c nvidia
+conda install pytorch-scatter -c pyg
 pip install -r requirements.txt
-conda install pytorch pytorch-cuda=11.6 -c pytorch -c nvidia
 ```
+
 ### Data Preparation
 <strong>ModelNet40</strong> and **ShapeNetPart** are utilized as the experimental datasets. Please refer to [pointcvar/README.md/Data Preparation](pointcvar/README.md#data-preparation) for the details to prepare the <strong>Training datasets</strong> and the <strong>Testing datasets with various noises</strong>.
 
